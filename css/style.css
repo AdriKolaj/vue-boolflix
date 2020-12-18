@@ -114,6 +114,7 @@ main {
   height: 100%;
   padding: 30px 10px;
   color: darkgrey;
+  overflow: auto;
 }
 .film-info > div {
   margin: 5px 0;
@@ -126,6 +127,11 @@ main {
 
 .stars i {
   color: #E7970B;
+}
+
+.overview {
+
+
 }
 
 /* /Main settings */
