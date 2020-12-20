@@ -22,8 +22,8 @@
             <img src="img/logo.png" alt="Boolflix logo">
           </div>
           <div class="right-nav">
-            <button type="button" name="button"><i class="fas fa-search"></i></button>
-            <input type="text" value="" placeholder="Cerca un film">
+            <button type="button" name="button" @click="goOnSearch"><i class="fas fa-search"></i></button>
+            <input type="text" value="" placeholder="Cerca un film" v-model="searchNew" @keydown.enter="goOnSearch">
           </div>
         </nav>
         <!-- /Nav section -->
