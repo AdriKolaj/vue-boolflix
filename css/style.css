@@ -129,9 +129,12 @@ main {
   color: #E7970B;
 }
 
-.overview {
-
-
+.language .value {
+  text-transform: uppercase;
+}
+.language .value img {
+  width: 20px;
+  margin-left: 5px;
 }
 
 /* /Main settings */

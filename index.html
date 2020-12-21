@@ -37,20 +37,24 @@
             <div class="film-info">
               <div class="title">
                 <span class="key">Titolo:</span>
-                <span class="value">{{film.title}}</span>
+                <span class="value">{{film.title}}{{film.name}}</span>
               </div>
-              <div class="original-title">
+              <div class="original-title" v-if="(film.title != film.original_title) || (film.name != film.original_name)">
                 <span class="key">Titolo originale:</span>
-                <span class="value">{{film.original_title}}</span>
+                <span class="value">{{film.original_title}}{{film.original_name}}</span>
+              </div>
+              <div class="language">
+                <span class="key">Lingua: </span>
+                <span class="value" v-if ="flags.includes(film.original_language)">
+                  <img :src="'img/'+ film.original_language + '.png'" :alt="film.original_language">
+                </span>
+                <span class="value" v-else>{{film.original_language}}</span>
               </div>
               <div class="stars">
                 <span class="key">Voto:</span>
                 <span class="value">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="far fa-star"></i>
+                  <i class="fas fa-star" v-for = "star in getStars(film.vote_average)"></i>
+                  <i class="far fa-star" v-for = "star in (5 - getStars(film.vote_average))"></i>
                 </span>
               </div>
               <div class="overview">
