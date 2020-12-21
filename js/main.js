@@ -6,6 +6,8 @@ var app = new Vue ({
   data: {
     searchNew: '',
     searchedFilm: [],
+    onlyFilms: [],
+    onlySeries: [],
     flags: ['it', 'en', 'de']
   },
 
@@ -22,7 +24,7 @@ var app = new Vue ({
           }
         })
         .then((response) => {
-          this.searchedFilm = response.data.results;
+          this.onlyFilms = response.data.results;
         });
 
         axios.get('https://api.themoviedb.org/3/search/tv', {
@@ -32,9 +34,10 @@ var app = new Vue ({
             query: this.searchNew,
           }
         })
-        .then((response) => {
-          this.searchedFilm = response.data.results;
+        .then((result) => {
+          this.onlySeries = result.data.results;
         });
+        this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
       }
     },
     getStars(vote) {
