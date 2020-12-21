@@ -36,8 +36,8 @@ var app = new Vue ({
         })
         .then((result) => {
           this.onlySeries = result.data.results;
+          this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
         });
-        this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
       }
     },
     getStars(vote) {

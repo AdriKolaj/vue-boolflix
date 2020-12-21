@@ -32,7 +32,9 @@
         <main>
           <div class="film" v-for = "film in searchedFilm">
             <div class="film-cover">
-              <img :src="'https://image.tmdb.org/t/p/w220_and_h330_face' + film.poster_path" alt="">
+              <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face' + film.poster_path" alt="">
+              <img v-else src="img/placeholder.png" alt="">
+              <span v-if="film.poster_path == null" class="placeholder-title">{{film.title}}{{film.name}}</span>
             </div>
             <div class="film-info">
               <div class="title">
