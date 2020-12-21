@@ -31,11 +31,14 @@
         <!-- Main section -->
         <main>
           <div class="film" v-for = "film in searchedFilm">
+            <!-- Film Cover -->
             <div class="film-cover">
               <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face' + film.poster_path" alt="">
               <img v-else src="img/placeholder.png" alt="">
               <span v-if="film.poster_path == null" class="placeholder-title">{{film.title}}{{film.name}}</span>
             </div>
+            <!-- /Film Cover -->
+            <!-- Film Info -->
             <div class="film-info">
               <div class="title">
                 <span class="key">Titolo:</span>
@@ -59,11 +62,20 @@
                   <i class="far fa-star" v-for = "star in (5 - getStars(film.vote_average))"></i>
                 </span>
               </div>
+              <div class="actors">
+                <span class="key">Attori:</span>
+                <span class="value"></span>
+              </div>
+              <!-- <div class="genre">
+                <span class="key">Genere:</span>
+                <span class="value" v-for="genre in genres">{{genre}}, </span>
+              </div> -->
               <div class="overview">
                 <span class="key">Overview:</span>
                 <span class="value">{{film.overview}}</span>
               </div>
             </div>
+            <!-- /Film Info -->
           </div>
         </main>
         <!-- /Main section -->

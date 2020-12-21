@@ -36,6 +36,8 @@
 .right-nav {
   display: flex;
   border: 1px solid lightgrey;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .right-nav button {
@@ -63,7 +65,7 @@
   padding: 10px;
   border: none;
   font-size: 15px;
-    color: lightgrey;
+  color: lightgrey;
   background-color: #151515;
 }
 .right-nav input:focus {
@@ -109,6 +111,26 @@ main {
   cursor: pointer;
   pointer-events: auto;
 }
+
+/* scrollbar settings */
+.film-info::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+.film-info::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+.film-info::-webkit-scrollbar-thumb:hover {
+  background: #878787;
+}
+.film-info::-webkit-scrollbar-track {
+  background: #040404;
+  border: 0px none #ffffff;
+  border-radius: 55px;
+}
+/* /scrollbar settings */
 
 .placeholder-title {
   position: absolute;

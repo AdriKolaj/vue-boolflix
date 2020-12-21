@@ -8,12 +8,12 @@ var app = new Vue ({
     searchedFilm: [],
     onlyFilms: [],
     onlySeries: [],
-    flags: ['it', 'en', 'de']
+    flags: ['it', 'en', 'de'],
+    genres: [],
   },
 
   methods: {
     goOnSearch() {
-
       if(this.searchNew != '') {
 
         axios.get('https://api.themoviedb.org/3/search/movie', {
@@ -37,12 +37,15 @@ var app = new Vue ({
         .then((result) => {
           this.onlySeries = result.data.results;
           this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
+          this.genres = result.data.results.genre_ids;
         });
       }
     },
+
     getStars(vote) {
       return Math.ceil(vote / 2);
-    }
+    },
+
   },
 
 
