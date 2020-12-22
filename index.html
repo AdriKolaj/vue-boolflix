@@ -30,7 +30,7 @@
 
         <!-- Main section -->
         <main>
-          <div class="film" v-for = "film in searchedFilm">
+          <div class="film" v-for = "(film, index) in searchedFilm">
             <!-- Film Cover -->
             <div class="film-cover">
               <img v-if="film.poster_path != null" :src="'https://image.tmdb.org/t/p/w220_and_h330_face' + film.poster_path" alt="">
@@ -66,10 +66,10 @@
                 <span class="key">Attori:</span>
                 <span class="value"></span>
               </div>
-              <!-- <div class="genre">
+              <div class="genre">
                 <span class="key">Genere:</span>
-                <span class="value" v-for="genre in genres">{{genre}}, </span>
-              </div> -->
+                <span class="value" v-for="genre in findGenre(index)">{{genre}}, </span>
+              </div>
               <div class="overview">
                 <span class="key">Overview:</span>
                 <span class="value">{{film.overview}}</span>

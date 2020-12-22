@@ -37,7 +37,13 @@ var app = new Vue ({
         .then((result) => {
           this.onlySeries = result.data.results;
           this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
-          this.genres = result.data.results.genre_ids;
+
+        });
+
+        axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=93b4dae4e614249a3c440ffbcd0c00e1&language=it-IT")
+        .then((genreResult) => {
+          console.log(genreResult);
+          this.genres = genreResult.data.genres
         });
       }
     },
@@ -46,7 +52,18 @@ var app = new Vue ({
       return Math.ceil(vote / 2);
     },
 
-  },
+    // Qui ho gli id genere per ogni film
+    findGenre(index) {
+      let ids = this.searchedFilm[index].genre_ids
+      this.genres.forEach((item, i) => {
+        if(item.id == ids) {
+          console.log(item.name)
+          genreFound = item.name
+          console.log(genreFound)
+        }
+      });
+    },
 
+  },
 
 })
