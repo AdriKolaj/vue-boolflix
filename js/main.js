@@ -56,12 +56,13 @@ var app = new Vue ({
     findGenre(index) {
       let ids = this.searchedFilm[index].genre_ids
       this.genres.forEach((item, i) => {
-        if(item.id == ids) {
+        if(ids.includes(item.id)) {
           console.log(item.name)
           genreFound = item.name
           console.log(genreFound)
         }
       });
+      return genreFound
     },
 
   },
