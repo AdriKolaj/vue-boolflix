@@ -11,7 +11,6 @@ var app = new Vue ({
     onlySeries: [],
     flags: ['it', 'en', 'de'],
     genres: [],
-    actorsFound: []
   },
 
   methods: {
@@ -28,6 +27,7 @@ var app = new Vue ({
         })
         .then((response) => {
           this.onlyFilms = response.data.results;
+          self.$forceUpdate();
         });
         // Ricerca serie tv
         axios.get('https://api.themoviedb.org/3/search/tv', {
@@ -42,13 +42,15 @@ var app = new Vue ({
             this.onlySeries = result.data.results;
             this.searchedFilm = this.onlyFilms.concat(this.onlySeries);
           }
+          self.$forceUpdate();
         });
 
         const self = this;
         // ricerca attori da API
-        for (let i = 0; i < this.searchedFilm.length; i++) {
-          let currentId = this.searchedFilm[i].id;
-          console.log(this.searchedFilm[i].id);
+        for (let i = 0; i < self.searchedFilm.length; i++) {
+          let currentId = self.searchedFilm[i].id;
+          const currentFilm = self.searchedFilm[i];
+          currentFilm.cast = [];
 
           axios.get('https://api.themoviedb.org/3/movie/'+ currentId +'/credits', {
             params: {
@@ -57,18 +59,14 @@ var app = new Vue ({
           })
           .then((actorsResult) => {
             if(actorsResult.status === 200) {
-              // self.actorsFound.push(actorsResult.data.cast[0].name);
-              // console.log(self.actorsFound);
-              actorsResult.data.cast.forEach((item, i) => {
-                if(actorsResult.data.cast.length < 5) {
-                  self.actorsFound.push(actorsResult.data.cast[i].name);
+              for (var j = 0; j < actorsResult.data.cast.length; j++) {
+                if(currentFilm.cast.length < 5) {
+                  currentFilm.cast.push(actorsResult.data.cast[j].name);
                 }
-                console.log(self.actorsFound)
-              });
-
+              }
             }
+            self.$forceUpdate();
           });
-
         }
 
         // ricerca generi da API
@@ -85,17 +83,6 @@ var app = new Vue ({
     getStars(vote) {
       return Math.ceil(vote / 2);
     },
-
-    // findId() {
-    //   let movieId = 0;
-    //   for (var i = 0; i < this.searchedFilm.length; i++) {
-    //     movieId = this.searchedFilm[index].id;
-    //   }
-    //   return movieId
-    //   // let movieId = this.searchedFilm[index].id;
-    //   // console.log(movieId);
-    //   // return movieId
-    // },
 
     // Associazione dei generi da API a film
     findGenre(index) {
