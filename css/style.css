@@ -76,12 +76,20 @@
 
 /* Main settings */
 main {
+
+}
+.main-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.select-for-genre {
+  text-align: center;
+  padding-top: 20px;
 }
 
 .film {

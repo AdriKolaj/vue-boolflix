@@ -11,6 +11,7 @@ var app = new Vue ({
     onlySeries: [],
     flags: ['it', 'en', 'de'],
     genres: [],
+    selectedGenre: '',
   },
 
   methods: {
@@ -95,7 +96,6 @@ var app = new Vue ({
       });
       return genreFound
     },
-
 
   },
 
